@@ -1,4 +1,5 @@
 """ Modern Python - Get random fact from wikipedia """
+
 import locale
 import textwrap
 from typing import Tuple
@@ -9,7 +10,7 @@ from requests.exceptions import HTTPError
 
 from . import __version__
 
-API_URL: str = "https://{language}.wikipedia.org/api/rest_v1/page/random/summary"
+API_URL = "https://{language}.wikipedia.org/api/rest_v1/page/random/summary"
 
 
 @click.command()

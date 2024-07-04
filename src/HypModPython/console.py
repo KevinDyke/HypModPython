@@ -1,9 +1,11 @@
 """ Modern Python - Get random fact from wikipedia """
+
 import textwrap
 
 import click
 
 from . import __version__, wikipedia
+
 
 @click.command()
 @click.option(
@@ -16,11 +18,11 @@ from . import __version__, wikipedia
 )
 @click.version_option(version=__version__)
 def main(language):
-    """ The hypermodern Python Python project. """
+    """The hypermodern Python Python project."""
     data = wikipedia.random_page(language=language)
-        
+
     title = data["title"]
     extract = data["extract"]
-        
+
     click.secho(title, fg="green")
     click.echo(textwrap.fill(extract))
