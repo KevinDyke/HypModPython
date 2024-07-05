@@ -7,6 +7,7 @@ import nox
 nox.options.sessions = "lint", "safety", "tests"
 locations = "src", "tests", "noxfile.py"
 
+
 def install_with_constraints(session, *args, **kwargs):
     with tempfile.NamedTemporaryFile() as requirements:
         session.run(
@@ -25,11 +26,7 @@ def tests(session):
     args = session.posargs or ["--cov", "-m", "not e2e"]
     session.run("poetry", "install", "--no-dev", external=True)
     install_with_constraints(
-        session,
-        "coverage[toml]",
-        "pytest",
-        "pytest-cov",
-        "pytest-mock,"
+        session, "coverage[toml]", "pytest", "pytest-cov", "pytest-mock,"
     )
     session.run("pytest", *args)
 
@@ -57,7 +54,7 @@ def black(session):
 
 @nox.session(python="3.11")
 def safety(session):
-    with tempfile.NamedTemporaryFile(delete=False, dir=".",mode='wt') as requirements:
+    with tempfile.NamedTemporaryFile(delete=False, dir=".", mode="wt") as requirements:
         session.run(
             "poetry",
             "export",
